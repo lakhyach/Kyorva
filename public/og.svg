@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Clayo — Privacy-first product analytics">
+  <rect width="1200" height="630" fill="#F6F5F1"/>
+  <!-- hairline grid -->
+  <g stroke="#E2DED4" stroke-width="1">
+    <line x1="0" y1="150" x2="1200" y2="150"/>
+    <line x1="0" y1="480" x2="1200" y2="480"/>
+  </g>
+  <!-- wordmark -->
+  <text x="90" y="290" font-family="'Clayo Display', 'Space Grotesk', sans-serif" font-size="150" font-weight="700" fill="#111114" letter-spacing="-6">Clayo<tspan font-size="42" dy="-70" fill="#6B6B74">&#174;</tspan></text>
+  <text x="95" y="360" font-family="'Space Grotesk', sans-serif" font-size="38" font-weight="500" fill="#3C3C43">Privacy-first product analytics.</text>
+  <text x="95" y="415" font-family="'Clayo Mono', monospace" font-size="22" fill="#6B6B74" letter-spacing="2">EVENTS &#183; FUNNELS &#183; RETENTION &#8212; NO COOKIES</text>
+  <!-- accent node + rising bars -->
+  <g>
+    <rect x="880" y="360" width="42" height="120" rx="6" fill="#111114"/>
+    <rect x="940" y="320" width="42" height="160" rx="6" fill="#111114"/>
+    <rect x="1000" y="270" width="42" height="210" rx="6" fill="#111114"/>
+    <rect x="1060" y="210" width="42" height="270" rx="6" fill="#CBF24C"/>
+    <circle cx="901" cy="300" r="22" fill="#CBF24C" stroke="#111114" stroke-width="4"/>
+  </g>
+</svg>

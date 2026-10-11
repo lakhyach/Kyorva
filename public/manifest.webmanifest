@@ -1,0 +1,17 @@
+{
+  "name": "Clayo — Privacy-first product analytics",
+  "short_name": "Clayo",
+  "description": "Privacy-first product analytics platform for event tracking, funnels, and retention.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f5f1",
+  "theme_color": "#111114",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
