@@ -2,64 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/favicon.svg" />
-    <link rel="manifest" href="/manifest.webmanifest" />
-
-    <title>Clayo — Privacy-first product analytics</title>
-    <meta
-      name="description"
-      content="Clayo is a privacy-first product analytics platform. Understand user behavior with event tracking, funnels, and retention — without cookies, without the noise."
-    />
-    <meta name="author" content="Lakhyajit Changmai" />
-    <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0c0c0e" media="(prefers-color-scheme: dark)" />
-    <link rel="canonical" href="https://clayo-analytics.vercel.app/" />
-
-    <!-- Open Graph / social sharing -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Clayo" />
-    <meta property="og:title" content="Clayo — Privacy-first product analytics" />
-    <meta
-      property="og:description"
-      content="Understand user behavior with event tracking, funnels, and retention — without cookies, without the noise."
-    />
-    <meta property="og:url" content="https://clayo-analytics.vercel.app/" />
-    <meta property="og:image" content="https://clayo-analytics.vercel.app/og.svg" />
-    <meta property="og:image:alt" content="Clayo — Privacy-first product analytics" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Clayo — Privacy-first product analytics" />
-    <meta
-      name="twitter:description"
-      content="Understand user behavior with event tracking, funnels, and retention — without cookies, without the noise."
-    />
-    <meta name="twitter:image" content="https://clayo-analytics.vercel.app/og.svg" />
-
-    <!-- Prevent theme flash: apply stored/system theme before paint -->
-    <script>
-      (function () {
-        try {
-          var stored = localStorage.getItem("clayo-theme");
-          var dark =
-            stored === "dark" ||
-            (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches);
-          if (dark) document.documentElement.classList.add("dark");
-        } catch (e) {}
-      })();
-    </script>
-
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Clayo",
-        "applicationCategory": "AnalyticsApplication",
-        "operatingSystem": "Web",
-        "description": "Privacy-first product analytics platform for event tracking, funnels, and retention.",
-        "url": "https://clayo-analytics.vercel.app/"
-      }
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>my-project</title>
   </head>
   <body>
     <div id="root"></div>

@@ -1,187 +1,194 @@
-import { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, X, Sun, Moon } from 'lucide-react';
-import { navLinks } from '../assets/data';
+/* eslint-disable no-unused-vars */
+import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, Sun, Moon, ChevronDown, LayoutGrid, Activity } from 'lucide-react';
 
-function Wordmark({ className = '' }) {
-  return (
-    <span className={`inline-flex items-center gap-2 ${className}`}>
-      <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true" className="shrink-0">
-        <rect width="64" height="64" rx="14" className="fill-ink dark:fill-paper" />
-        <circle
-          cx="30"
-          cy="32"
-          r="15"
-          fill="none"
-          strokeWidth="6"
-          strokeLinecap="round"
-          strokeDasharray="70 100"
-          transform="rotate(130 30 32)"
-          className="stroke-paper dark:stroke-ink"
-        />
-        <circle cx="45" cy="24" r="6" className="fill-volt" />
-      </svg>
-      <span className="font-display text-xl font-bold tracking-tight">
-        Clayo<sup className="text-[9px] font-normal align-super opacity-50">®</sup>
-      </span>
-    </span>
-  );
-}
+export default function Header({
+  darkMode,
+  setDarkMode,
+  mobileMenuOpen,
+  setMobileMenuOpen,
+  dropdownOpen,
+  setDropdownOpen,
+}) {
+  // Framer Motion Variants mirroring high-end institutional typography shifts
+  const overlayVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] } },
+    exit: { opacity: 0, transition: { duration: 0.2, ease: [0.7, 0, 0.84, 0] } }
+  };
 
-export default function Header({ isDark, toggleTheme, activeId }) {
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const panelRef = useRef(null);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  // Lock body scroll + trap Escape while the mobile menu is open.
-  useEffect(() => {
-    if (!open) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    const onKey = (e) => e.key === 'Escape' && setOpen(false);
-    window.addEventListener('keydown', onKey);
-    panelRef.current?.focus();
-    return () => {
-      document.body.style.overflow = prev;
-      window.removeEventListener('keydown', onKey);
-    };
-  }, [open]);
-
-  const go = (e, id) => {
-    e.preventDefault();
-    setOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const itemVariants = {
+    hidden: { y: 40, opacity: 0 },
+    visible: (i) => ({
+      y: 0,
+      opacity: 1,
+      transition: { delay: i * 0.05, duration: 0.4, ease: [0.16, 1, 0.3, 1] }
+    })
   };
 
   return (
-    <header
-      className={`sticky top-0 z-50 w-full transition-colors duration-300 ${
-        scrolled
-          ? 'backdrop-blur-md border-b border-line dark:border-line-dark bg-paper/80 dark:bg-night/80'
-          : 'border-b border-transparent bg-transparent'
-      }`}
-    >
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-12">
-        <a
-          href="#top"
-          onClick={(e) => go(e, 'top')}
-          className="text-ink dark:text-paper"
-          aria-label="Clayo — back to top"
-        >
-          <Wordmark />
-        </a>
+    <header className={`sticky top-0 z-50 w-full backdrop-blur-md border-b transition-colors duration-300 ${
+      darkMode ? 'bg-[#0B0B0B]/90 border-zinc-900' : 'bg-white/80 border-zinc-100'
+    }`}>
+      <div className="mx-auto cursor-pointer flex h-20 max-w-7xl items-center justify-between px-6 lg:px-12">
+        <div className={`font-bold tracking-tighter text-xl ${darkMode ? 'text-white' : 'text-black'}`}>
+          <span className="logo-font">Clayo <sup className="text-[10px] font-mono font-normal tracking-none -ml-0.5">®</sup></span>
+        </div>
 
-        {/* Desktop nav */}
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
-          {navLinks.map((link) => (
-            <a
-              key={link.id}
-              href={`#${link.id}`}
-              onClick={(e) => go(e, link.id)}
-              aria-current={activeId === link.id ? 'true' : undefined}
-              className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                activeId === link.id
-                  ? 'text-ink dark:text-paper'
-                  : 'text-muted hover:text-ink dark:hover:text-paper'
+        {/* ─── DESKTOP NAVIGATION ─── */}
+        <nav className="hidden items-center gap-8 text-xs uppercase tracking-wider font-semibold lg:flex">
+          <a href="#home" className={`transition-colors ${darkMode ? 'text-zinc-300 hover:text-white' : 'text-zinc-600 hover:text-black'}`}>Home</a>
+          <a href="#services" className={`transition-colors ${darkMode ? 'text-zinc-300 hover:text-white' : 'text-zinc-600 hover:text-black'}`}>Services</a>
+          <a href="#about" className={`transition-colors ${darkMode ? 'text-zinc-300 hover:text-white' : 'text-zinc-600 hover:text-black'}`}>About Us</a>
+
+          <div className="relative">
+            <button
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+              onBlur={() => setTimeout(() => setDropdownOpen(false), 200)}
+              className={`transition-colors flex items-center gap-1 focus:outline-none ${
+                darkMode ? 'text-zinc-400 hover:text-white' : 'text-zinc-600 hover:text-black'
               }`}
             >
-              {link.label}
-              {activeId === link.id && (
-                <motion.span
-                  layoutId="nav-pill"
-                  className="absolute inset-0 -z-10 rounded-full bg-paper-2 dark:bg-night-2"
-                  transition={{ type: 'spring', stiffness: 400, damping: 32 }}
-                />
+              <span>System Index</span>
+              <ChevronDown size={12} className={`transform transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} />
+            </button>
+
+            <AnimatePresence>
+              {dropdownOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 5 }}
+                  transition={{ duration: 0.15, ease: 'easeOut' }}
+                  className={`absolute left-0 mt-3 w-56 border p-1 shadow-xl focus:outline-none rounded-lg ${
+                    darkMode ? 'bg-[#111112] border-zinc-800 shadow-black/40' : 'bg-white border-zinc-200/80 shadow-zinc-200/40'
+                  }`}
+                >
+                  <div className="space-y-0.5">
+                    <a href="#phase2" className={`flex items-center gap-2.5 px-3 py-2 text-xs font-medium transition-colors rounded-md ${
+                      darkMode ? 'text-zinc-300 hover:bg-zinc-900 hover:text-white' : 'text-zinc-600 hover:bg-zinc-50 hover:text-black'
+                    }`}>
+                      <LayoutGrid size={13} className="text-zinc-500" />
+                      <span>Phase 2 Blueprint</span>
+                    </a>
+                    <a href="#logs" className={`flex items-center gap-2.5 px-3 py-2 text-xs font-medium transition-colors rounded-md ${
+                      darkMode ? 'text-zinc-300 hover:bg-zinc-900 hover:text-white' : 'text-zinc-600 hover:bg-zinc-50 hover:text-black'
+                    }`}>
+                      <Activity size={13} className="text-zinc-500" />
+                      <span>System Logs & Ledger</span>
+                    </a>
+                  </div>
+                </motion.div>
               )}
-            </a>
-          ))}
+            </AnimatePresence>
+          </div>
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="hidden items-center gap-4 lg:flex">
           <button
-            onClick={toggleTheme}
-            aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
-            className="rounded-full border border-line dark:border-line-dark p-2.5 text-ink dark:text-paper hover:bg-paper-2 dark:hover:bg-night-2 transition-colors"
+            onClick={() => setDarkMode(!darkMode)}
+            className={`p-2.5 rounded-full border transition-all ${
+              darkMode ? 'border-zinc-800 bg-zinc-900 text-zinc-100 hover:bg-zinc-800' : 'border-zinc-200 bg-zinc-50 text-zinc-600 hover:bg-zinc-100'
+            }`}
           >
-            {isDark ? <Sun size={16} /> : <Moon size={16} />}
+            {darkMode ? <Sun color='white' size={14} /> : <Moon size={14} />}
           </button>
 
-          <a href="#start" onClick={(e) => go(e, 'start')} className="btn-primary hidden sm:inline-flex">
-            Start free
-          </a>
+          <button className={`text-xs font-semibold uppercase tracking-wider px-5 py-3 rounded-full transition-all ${
+            darkMode ? 'bg-white text-black hover:bg-zinc-200' : 'bg-[#111111] text-white hover:bg-zinc-800'
+          }`}>
+            Get Started
+          </button>
+        </div>
 
+        {/* ─── MOBILE CONTROLS TRIGGER ─── */}
+        <div className="flex items-center gap-2 lg:hidden">
           <button
-            onClick={() => setOpen(true)}
-            aria-label="Open menu"
-            aria-expanded={open}
-            className="rounded-full p-2.5 text-ink dark:text-paper lg:hidden"
+            onClick={() => setDarkMode(!darkMode)}
+            className={`p-2 rounded-full border transition-colors ${
+              darkMode ? 'border-zinc-900 bg-zinc-950 text-yellow-400' : 'border-zinc-100 bg-zinc-50 text-zinc-600'
+            }`}
+          >
+            {darkMode ? <Sun size={14} /> : <Moon size={14} />}
+          </button>
+          <button
+            onClick={() => setMobileMenuOpen(true)}
+            className={`rounded-full p-2 transition-colors ${darkMode ? 'text-zinc-400 hover:bg-zinc-900' : 'text-zinc-600 hover:bg-zinc-100'}`}
           >
             <Menu size={22} />
           </button>
         </div>
       </div>
 
-      {/* Mobile full-screen menu */}
+      {/* ─── SWISS FULL SCREEN OVERLAY ARCHITECTURE ─── */}
       <AnimatePresence>
-        {open && (
+        {mobileMenuOpen && (
           <motion.div
-            ref={panelRef}
-            tabIndex={-1}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Site menu"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-50 flex flex-col justify-between bg-paper dark:bg-night p-6 lg:hidden outline-none"
+            variants={overlayVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className={`fixed bg-zinc-100/95 h-screen inset-0 z-999 flex flex-col justify-between p-6 sm:p-12 lg:hidden ${
+              darkMode ? 'bg-[#070708] text-white' : ' text-black'
+            }`}
           >
-            <div className="flex items-center justify-between">
-              <Wordmark className="text-ink dark:text-paper" />
+            {/* Overlay Top Bar Layout */}
+            <div className="flex  items-center justify-between w-full border-b pb-6 border-current/10">
+              <div className="text-[10px] font-mono uppercase tracking-[0.25em] opacity-40">INDEXED_MENU // 2026</div>
               <button
-                onClick={() => setOpen(false)}
-                aria-label="Close menu"
-                className="rounded-full p-2 text-ink dark:text-paper hover:bg-paper-2 dark:hover:bg-night-2"
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-2 -mr-2 transition-transform hover:rotate-90 duration-200"
+                aria-label="Close mobile menu"
               >
-                <X size={24} />
+                <X size={26} strokeWidth={1.5} />
               </button>
             </div>
 
-            <nav className="flex flex-col gap-2" aria-label="Mobile">
-              {navLinks.map((link, i) => (
-                <motion.a
-                  key={link.id}
-                  href={`#${link.id}`}
-                  onClick={(e) => go(e, link.id)}
-                  initial={{ y: 24, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.05 * i, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-5xl sm:text-6xl font-display font-bold tracking-tight py-1 text-ink dark:text-paper"
-                >
-                  {link.label}
-                </motion.a>
+            {/* Asymmetric Typography Navigation Stack */}
+            <div className="flex  flex-col justify-center space-y-4 grow my-auto max-w-xl text-left">
+              {[
+                { label: 'Home', href: '#home' },
+                { label: 'Services', href: '#services' },
+                { label: 'About Us', href: '#about' }
+              ].map((link, idx) => (
+                <div key={idx} className="overflow-hidden py-1">
+                  <motion.a
+                    custom={idx}
+                    variants={itemVariants}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block text-5xl sm:text-7xl font-bold tracking-tighter uppercase leading-none border-b border-transparent hover:border-current transition-colors"
+                  >
+                    {link.label}
+                  </motion.a>
+                </div>
               ))}
-            </nav>
-
-            <div className="space-y-3">
-              <a
-                href="#start"
-                onClick={(e) => go(e, 'start')}
-                className="btn-primary w-full"
-              >
-                Start free
-              </a>
-              <button onClick={toggleTheme} className="btn-ghost w-full">
-                {isDark ? 'Light mode' : 'Dark mode'}
-              </button>
             </div>
+
+            {/* System Status Metrics Bottom Row */}
+            <div className="border-t pt-8 border-current/10 grid grid-cols-1 sm:grid-cols-2 gap-8 w-full items-end">
+              <div className="space-y-3">
+                <span className="block text-[10px] font-mono uppercase tracking-widest opacity-40">System Core Targets</span>
+                <div className="flex flex-col gap-2 font-mono text-[11px] uppercase tracking-wider">
+                  <a href="#phase2" onClick={() => setMobileMenuOpen(false)} className="hover:opacity-60 transition-opacity flex items-center gap-1.5">
+                    <span>Phase 2 Blueprint</span>
+                  </a>
+                  <a href="#logs" onClick={() => setMobileMenuOpen(false)} className="hover:opacity-60 transition-opacity flex items-center gap-1.5">
+                    <span>System Logs & Ledger</span>
+                  </a>
+                </div>
+              </div>
+
+              <div>
+                <button className={`w-full py-4 text-xs font-bold uppercase tracking-widest text-center transition-colors ${
+                  darkMode ? 'bg-white text-black hover:bg-zinc-200' : 'bg-black text-white hover:bg-zinc-900'
+                }`}>
+                  Get Started
+                </button>
+              </div>
+            </div>
+
           </motion.div>
         )}
       </AnimatePresence>

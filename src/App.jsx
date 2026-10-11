@@ -1,36 +1,46 @@
+import React, { useState } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import Metrics from './components/Metrics';
+import AboutSection from './components/AboutSection';
 import Features from './components/Features';
-import DashboardDemo from './components/DashboardDemo';
-import Privacy from './components/Privacy';
+import Team from './components/Team';
+import Testimonials from './components/Testimonials';
 import Articles from './components/Articles';
-import StartForm from './components/StartForm';
 import Footer from './components/Footer';
-import { useTheme } from './hooks/useTheme';
-import { useScrollSpy } from './hooks/useScrollSpy';
-import { navLinks } from './assets/data';
+import { features, team, testimonials, articles } from './assets/data';
 
-const SECTION_IDS = navLinks.map((l) => l.id);
 
 export default function App() {
-  const { isDark, toggleTheme } = useTheme();
-  const activeId = useScrollSpy(SECTION_IDS);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
 
   return (
-    <div className="min-h-screen bg-paper text-ink dark:bg-night dark:text-paper font-sans antialiased">
-      <a href="#main" className="skip-link">
-        Skip to content
-      </a>
+    <div
+      className={`min-h-screen font-sans antialiased transition-colors duration-300 ${
+        darkMode ? 'bg-[#0B0B0B] text-zinc-100 selection:bg-zinc-800' : 'bg-white text-[#1A1A1A] selection:bg-zinc-200'
+      }`}
+    >
+      <Header
+        darkMode={darkMode}
+        setDarkMode={setDarkMode}
+        mobileMenuOpen={mobileMenuOpen}
+        setMobileMenuOpen={setMobileMenuOpen}
+        dropdownOpen={dropdownOpen}
+        setDropdownOpen={setDropdownOpen}
+      />
 
-      <Header isDark={isDark} toggleTheme={toggleTheme} activeId={activeId} />
-
-      <main id="main">
-        <Hero />
-        <Features />
-        <DashboardDemo />
-        <Privacy />
-        <Articles />
-        <StartForm />
+      <main>
+        <Hero darkMode={darkMode} />
+        <Metrics darkMode={darkMode} />
+        <AboutSection darkMode={darkMode} />
+        <Features features={features} darkMode={darkMode} />
+        <Team team={team} darkMode={darkMode} />
+        <Testimonials testimonials={testimonials} darkMode={darkMode} />
+        
+        <Articles articles={articles} darkMode={darkMode} />
       </main>
 
       <Footer />

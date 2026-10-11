@@ -1,133 +1,75 @@
-import {
-  Activity,
-  Filter,
-  Users,
-  ShieldCheck,
-  Gauge,
-  Plug,
-} from 'lucide-react';
+import { BarChart3,Sliders,Smartphone} from "lucide-react";
 
-/* ────────────────────────────────────────────────────────────
-   MARKETING CONTENT — original, honest descriptions of Clayo
-   as a product. No fabricated customers, quotes, or metrics.
-   ──────────────────────────────────────────────────────────── */
+ const features = [
+    {
+      icon: BarChart3,
+      title: "Real-time analytics",
+      desc: "Gain actionable insights with our real-time analytics platform."
+    },
+    {
+      icon: Sliders,
+      title: "Customizable reports",
+      desc: "Tailor your financial overviews with automated workflows."
+    },
+    {
+      icon: Smartphone,
+      title: "Mobile accessibility",
+      desc: "Manage your finances on the go with our mobile-friendly platform."
+    }
+  ];
 
-export const features = [
-  {
-    icon: Activity,
-    title: 'Event tracking',
-    desc: 'Capture every product interaction with a single lightweight SDK. Events stream in real time and are queryable the moment they land.',
-  },
-  {
-    icon: Filter,
-    title: 'Funnels & conversion',
-    desc: 'Build multi-step funnels without SQL. See exactly where users drop off and how each step converts, segment by segment.',
-  },
-  {
-    icon: Users,
-    title: 'Retention cohorts',
-    desc: 'Understand which users come back and why. Cohort retention is computed automatically from your event stream.',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Privacy by design',
-    desc: 'Cookieless collection, IP anonymisation, and data residency controls. No third-party trackers, no ad-tech baggage.',
-  },
-  {
-    icon: Gauge,
-    title: 'Sub-second queries',
-    desc: 'A columnar event store keeps dashboards responsive even on hundreds of millions of events. Answers in the time you think.',
-  },
-  {
-    icon: Plug,
-    title: 'Open integrations',
-    desc: 'Export to your warehouse, sync with common tools, or query the REST API. Your data stays portable — no lock-in.',
-  },
-];
+  // Team Section Data
+  const team = [
+    { name: "Ava Summers", role: "Chief Marketing Officer", img: "https://images.unsplash.com/photo-1604076850742-4c7221f3101b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGFic3RyYWN0JTIwZ3JhZGllbnRzfGVufDB8fDB8fHww" },
+    { name: "Noah Carter", role: "Product Marketing Lead", img: "https://images.unsplash.com/photo-1579546928937-641f7ac9bced?q=80&w=639&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+    { name: "Mia Patel", role: "UX Strategy Director", img: "https://images.unsplash.com/photo-1579547621706-1a9c79d5c9f1?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+    { name: "Leo Chen", role: "Growth Operations Manager", img: "https://images.unsplash.com/photo-1646038572815-43fe759e459b?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+    { name: "Ethan Brooks", role: "Content Strategy Director", img: "https://images.unsplash.com/photo-1604076984203-587c92ab2e58?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+    { name: "Sophia Lee", role: "Brand Experience Specialist", img: "https://images.unsplash.com/photo-1614854262318-831574f15f1f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" }
+  ];
 
-/* Honest product principles — not fabricated social proof. */
-export const principles = [
-  {
-    label: 'No cookies',
-    detail: 'Identification uses first-party, privacy-safe tokens — never cross-site tracking cookies.',
-  },
-  {
-    label: 'You own the data',
-    detail: 'Raw events are exportable at any time in open formats. Leave whenever you want, with everything.',
-  },
-  {
-    label: 'Readable by default',
-    detail: 'Every metric shows its definition and source so the number on screen means what you think it means.',
-  },
-];
+  // Testimonials Data
+  const testimonials = [
+    {
+      quote: "Advisory has been a game-changer for our business. With its comprehensive financial management tools, we've been able to streamline our processes and make more informed decisions. The customer support team is also top-notch.",
+      image: "https://images.unsplash.com/photo-1604076913837-52ab5629fba9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YWJzdHJhY3QlMjBncmFkaWVudHN8ZW58MHx8MHx8fDA%3D",
+      author: "John Doe",
+      title: "CEO, Tech Innovations"
+    },
+    {
+      quote: "Advisory has been a game-changer for our business. With its comprehensive financial management tools, we've been able to streamline our processes and make more informed decisions. The customer support team is also top-notch.",
+      image: "https://images.unsplash.com/photo-1604076913837-52ab5629fba9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YWJzdHJhY3QlMjBncmFkaWVudHN8ZW58MHx8MHx8fDA%3D",
+      author: "John Doe",
+      title: "CEO, Tech Innovations"
+    },
+    {
+      quote: "Advisory has been a game-changer for our business. With its comprehensive financial management tools, we've been able to streamline our processes and make more informed decisions. The customer support team is also top-notch.",
+      image: "https://images.unsplash.com/photo-1604076913837-52ab5629fba9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YWJzdHJhY3QlMjBncmFkaWVudHN8ZW58MHx8MHx8fDA%3D",
+      author: "John Doe",
+      title: "CEO, Tech Innovations"
+    }
+  ];
 
-/* Written insight posts — real authored content for the demo site. */
-export const articles = [
-  {
-    tag: 'Product',
-    readTime: '4 min',
-    title: 'Why we made retention cohorts the first thing you see',
-    desc: 'Most teams do not need more charts — they need to know which users come back. Here is the reasoning behind our default dashboard.',
-    date: '2026-09-18',
-  },
-  {
-    tag: 'Privacy',
-    readTime: '6 min',
-    title: 'Cookieless analytics without losing the plot',
-    desc: 'A practical look at how Clayo attributes behaviour to product decisions while staying fully cookie-free and GDPR-friendly.',
-    date: '2026-08-02',
-  },
-  {
-    tag: 'Engineering',
-    readTime: '5 min',
-    title: 'Making a columnar event store feel instant in the browser',
-    desc: 'Query planning, pre-aggregation, and the small rendering decisions that keep big dashboards under a second.',
-    date: '2026-07-11',
-  },
-];
+  // Articles/Insights Data
+  const articles = [
+    {
+      tag: "Finance",
+      title: "The Ultimate Guide to Budgeting in 2024",
+      desc: "Master the art of budgeting with our comprehensive guide. Learn how to create a budget that works for you.",
+      img: "https://images.unsplash.com/photo-1579547621706-1a9c79d5c9f1?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+      tag: "Finance",
+      title: "Top Investment Strategies for Long-Term Growth",
+      desc: "Discover the best investment strategies to build and monitor your wealth over time. From stocks to bonds.",
+      img: "https://images.unsplash.com/photo-1604076913837-52ab5629fba9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YWJzdHJhY3QlMjBncmFkaWVudHN8ZW58MHx8MHx8fDA%3D"
+    },
+    {
+      tag: "Finance",
+      title: "Understanding Cryptocurrency: What You Need to Know",
+      desc: "Cryptocurrency continues to make headlines, but what does it mean for your finances? Get a clear understanding of trends.",
+      img: "https://images.unsplash.com/photo-1604076984203-587c92ab2e58?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    }
+  ];
 
-export const navLinks = [
-  { id: 'product', label: 'Product' },
-  { id: 'demo', label: 'Live demo' },
-  { id: 'privacy', label: 'Privacy' },
-  { id: 'insights', label: 'Insights' },
-];
-
-/* ────────────────────────────────────────────────────────────
-   ILLUSTRATIVE SAMPLE DATA for the interactive demo.
-   Synthetic and deterministic — clearly labelled in the UI.
-   ──────────────────────────────────────────────────────────── */
-
-export const SAMPLE_NOTICE =
-  'Illustrative sample data generated in your browser. Not live production metrics.';
-
-// 14 synthetic days of events per metric (deterministic, no randomness).
-export const sampleTimeseries = [
-  { day: 'Mon', views: 1240, signups: 96, purchases: 34 },
-  { day: 'Tue', views: 1580, signups: 112, purchases: 41 },
-  { day: 'Wed', views: 1490, signups: 104, purchases: 38 },
-  { day: 'Thu', views: 1820, signups: 138, purchases: 52 },
-  { day: 'Fri', views: 1675, signups: 121, purchases: 47 },
-  { day: 'Sat', views: 1120, signups: 74, purchases: 28 },
-  { day: 'Sun', views: 1010, signups: 68, purchases: 22 },
-  { day: 'Mon', views: 1730, signups: 131, purchases: 49 },
-  { day: 'Tue', views: 1980, signups: 152, purchases: 61 },
-  { day: 'Wed', views: 2120, signups: 168, purchases: 72 },
-  { day: 'Thu', views: 2050, signups: 160, purchases: 69 },
-  { day: 'Fri', views: 2240, signups: 178, purchases: 80 },
-  { day: 'Sat', views: 1610, signups: 108, purchases: 44 },
-  { day: 'Sun', views: 1490, signups: 99, purchases: 39 },
-];
-
-export const metrics = [
-  { key: 'views', label: 'Product views', unit: 'events' },
-  { key: 'signups', label: 'Trial signups', unit: 'users' },
-  { key: 'purchases', label: 'Paid conversions', unit: 'orders' },
-];
-
-export const sampleFunnel = [
-  { step: 'Visited', value: 100 },
-  { step: 'Signed up', value: 61 },
-  { step: 'Activated', value: 38 },
-  { step: 'Subscribed', value: 19 },
-];
+  export { features, team, testimonials, articles };

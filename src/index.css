@@ -1,200 +1,254 @@
+@import url("https://www.google.com/search?q=https://fonts.googleapis.com/css2%3Ffamily%3DPlus%2BJakarta%2BSans:ital,wght%400,200..800%3B1,200..800%26family%3DMontserrat:ital,wght%400,100..900%3B1,100..900%26family%3DPlayfair%2BDisplay:ital,wght%400,400..900%3B1,400..900%26family%3DPrata%26family%3DInter%26family%3DBebas%2BNeue%26family%3DPoppins:ital,wght%400,100%3B0,200%3B0,300%3B0,400%3B0,500%3B0,600%3B0,700%3B0,800%3B0,900%3B1,100%3B1,200%3B1,300%3B1,400%3B1,500%3B1,600%3B1,700%3B1,800%3B1,900%26display%3Dswap");
+
+@import url("https://fonts.googleapis.com/css2?family=Cookie&display=swap");
+
+/* Tailwind V4.0 */
 @import "tailwindcss";
 
-/* ────────────────────────────────────────────────────────────
-   Clayo Design System
-   - Light-first editorial base, single "volt" accent
-   - Locally bundled fonts only (no render-blocking remote CSS)
-   - Class-based dark mode (toggled on <html>)
-   ──────────────────────────────────────────────────────────── */
+/* Dark-Mode Toggle manually */
+@variant dark (&:where(.dark, .dark *));
 
-@custom-variant dark (&:where(.dark, .dark *));
+/* on-special-cases */
+/* body {
+  background: #1b1b1b;
+  scroll-behavior: smooth;
+} */
 
-/* ── Local font faces (served from /public/fonts) ── */
+/* FONTS */
+
+/* Custom Fonts */
+
 @font-face {
-  font-family: "Clayo Grotesk";
-  src: url(/fonts/SpaceGrotesk.ttf) format("truetype");
-  font-display: swap;
-  font-weight: 300 700;
-}
-@font-face {
-  font-family: "Clayo Mono";
-  src: url(/fonts/MONASANS.TTF) format("truetype");
-  font-display: swap;
+  font-family: "helvetica";
+  src: url(/fonts/Helvetica.ttf);
 }
 @font-face {
-  font-family: "Clayo Display";
-  src: url(/fonts/PANCHANG.ttf) format("truetype");
-  font-display: swap;
+  font-family: "space";
+  src: url(/fonts/SpaceGrotesk.ttf);
+}
+@font-face {
+  font-family: "logo-font";
+  src: url(/fonts/PANCHANG.ttf);
+}
+@font-face {
+  font-family: "monasans";
+  src: url(/fonts/MONASANS.TTF);
 }
 
-@theme {
-  /* Brand surfaces */
-  --color-paper: #f6f5f1;
-  --color-paper-2: #efece5;
-  --color-ink: #111114;
-  --color-ink-2: #1b1b20;
-  --color-night: #0c0c0e;
-  --color-night-2: #15151a;
-
-  /* Text */
-  --color-body: #3c3c43;
-  --color-muted: #6b6b74;
-  --color-body-dark: #c7c7cf;
-  --color-muted-dark: #8a8a94;
-
-  /* Accent */
-  --color-volt: #cbf24c;
-  --color-volt-deep: #a9d62f;
-  --color-signal: #4c5cff;
-
-  /* Lines */
-  --color-line: #e2ded4;
-  --color-line-dark: #26262d;
-
-  /* Type */
-  --font-sans: "Clayo Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "Clayo Mono", ui-monospace, "SFMono-Regular", monospace;
-  --font-display: "Clayo Display", "Clayo Grotesk", sans-serif;
-
-  /* Motion */
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+.helvetica-font {
+  font-family: "helvetica", sans-serif !important;
 }
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%;
-  }
-
-  /* Offset anchored sections for the sticky header */
-  section[id] {
-    scroll-margin-top: 5.5rem;
-  }
-
-  body {
-    background-color: var(--color-paper);
-    color: var(--color-ink);
-    font-family: var(--font-sans);
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-  }
-
-  .dark body {
-    background-color: var(--color-night);
-    color: var(--color-paper);
-  }
-
-  /* Accessible, visible focus ring for keyboard users only */
-  :focus-visible {
-    outline: 2px solid var(--color-signal);
-    outline-offset: 2px;
-    border-radius: 4px;
-  }
-
-  ::selection {
-    background: var(--color-volt);
-    color: var(--color-ink);
-  }
-
-  /* Respect reduced-motion across all CSS animations/transitions */
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.001ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.001ms !important;
-    }
-  }
+.space-font {
+  font-family: "space", sans-serif !important;
+}
+.monasans-font {
+  font-family: "monasans", sans-serif !important;
 }
 
-@layer components {
-  /* Skip link for keyboard/screen-reader users */
-  .skip-link {
-    position: absolute;
-    left: 1rem;
-    top: -3rem;
-    z-index: 100;
-    padding: 0.6rem 1rem;
-    background: var(--color-ink);
-    color: var(--color-paper);
-    border-radius: 0.5rem;
-    font-size: 0.8rem;
-    transition: top 0.2s var(--ease-out-expo);
-  }
-  .skip-link:focus {
-    top: 1rem;
-  }
-
-  .eyebrow {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    background: var(--color-ink);
-    color: var(--color-paper);
-    font-weight: 600;
-    font-size: 0.8rem;
-    letter-spacing: 0.02em;
-    padding: 0.8rem 1.4rem;
-    border-radius: 999px;
-    transition: transform 0.2s var(--ease-out-expo), background 0.2s ease;
-  }
-  .btn-primary:hover {
-    background: var(--color-ink-2);
-    transform: translateY(-1px);
-  }
-  .dark .btn-primary {
-    background: var(--color-volt);
-    color: var(--color-ink);
-  }
-  .dark .btn-primary:hover {
-    background: var(--color-volt-deep);
-  }
-
-  .btn-ghost {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    border: 1px solid var(--color-line);
-    color: inherit;
-    font-weight: 600;
-    font-size: 0.8rem;
-    padding: 0.78rem 1.35rem;
-    border-radius: 999px;
-    transition: border-color 0.2s ease, background 0.2s ease;
-  }
-  .btn-ghost:hover {
-    border-color: currentColor;
-  }
-  .dark .btn-ghost {
-    border-color: var(--color-line-dark);
-  }
+.logo-font {
+  font-family: "logo-font", sans-serif !important;
+}
+/* Google Fonts */
+* {
+  font-family: "helvetica", "Plus Jakarta Sans", "inter", "poppins", sans-serif;
 }
 
-/* Marquee for the trusted-metrics ticker (decorative, paused on hover) */
-@keyframes clayo-marquee {
+h1,
+h2,
+h3,
+h4 {
+  font-family: "space","monasans","space", sans-serif;
+}
+
+.playfair-display {
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  /* font-style: normal; */
+}
+
+.cookie-font {
+  font-family: "Cookie", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.montserrat {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+a.active hr {
+  display: block;
+}
+
+::-webkit-scrollbar {
+  display: none;
+  -webkit-scrollbar: none;
+}
+
+/* 🔷  Marquee Effect*/
+@keyframes marquee {
   from {
     transform: translateX(0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(-1040%);
   }
 }
+
 .animate-marquee {
-  animation: clayo-marquee 32s linear infinite;
+  display: flex;
+  animation: marquee 150s linear infinite;
+  animation-play-state: var(--marquee-play-state, running);
 }
-.animate-marquee:hover {
-  animation-play-state: paused;
+
+/* --drop-shadow-3xl: 0 35px 35px rgba(0, 0, 0, 0.25);  */
+
+.color {
+  background-color: #ffebf5;
+  border-color: #c586a5;
+  color: #cc1379;
+}
+
+/* Git-Hub Black:  #0d1117 */
+
+/* Extending themes-example */
+@theme {
+  --color-prime-accent: #dfff3b;
+  --color-prime-white: #fff4e9;
+  --color-prime-blue: #1b6e9d;
+  --color-prime-dark: #121212;
+  --color-sec-dark: #0b0b0b;
+
+  --drop-shadow-3xl: 0 35px 35px rgba(0, 0, 0, 0.25);
+
+  /* Animations Extension */
+  --animate-wiggle: wiggle 2s ease-out infinite;
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: rotate(-3deg);
+    }
+    50% {
+      transform: rotate(3deg);
+    }
+  }
+
+  --animate-border: border 5s linear infinite;
+  @keyframes border {
+    0% {
+      border-color: rgb(56, 189, 248); /* Tailwind CSS sky-400 */
+    }
+    50% {
+      border-color: rgb(236, 72, 153);
+    }
+    75% {
+      border-color: #adfe02;
+    }
+    100% {
+      border-color: rgb(56, 189, 248);
+    }
+  }
+
+  --animate-scroll: scroll 40s linear infinite;
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+}
+
+/* CUSTOM_UTIITIES */
+/* @utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+} */
+
+@utility centered-row {
+  @apply flex items-center;
+}
+
+@utility mirror-x {
+  @apply transform scale-x-[-1];
+}
+
+@layer components {
+  .btn-hover {
+    @apply hover:bg-transparent hover:border hover:border-zinc-600 hover:transition-all;
+  }
+
+  .heading-2 {
+    @apply text-6xl lg:text-9xl uppercase leading-tight mb-12;
+  }
+
+  .col {
+    @apply flex flex-col;
+  }
+
+  .transition2 {
+    @apply transition-all duration-300 cursor-pointer ease-out;
+  }
+
+  .glass {
+    @apply bg-[#0A0A0A]/80  border border-white/10;
+  }
+
+  .card-hover {
+    @apply hover:-translate-y-2 transition-all duration-300 cursor-pointer ease-in;
+  }
+
+  .black-text {
+    @apply text-zinc-500/90;
+  }
+
+  .line-bottom {
+    @apply border-b border-b-zinc-500/40;
+  }
+
+  .center-item {
+    @apply centered-row justify-center;
+  }
+
+  .grad-text {
+    @apply text-transparent bg-gradient-to-tr  bg-clip-text;
+  }
+
+  .grad1 {
+    @apply text-transparent bg-gradient-to-tr bg-clip-text from-indigo-100 to-indigo-400;
+  }
+
+  .link-hover {
+    @apply hover:font-bold hover:text-zinc-800 transition-all duration-300 ease-in-out hover:-translate-y-1;
+  }
+}
+
+/* If Needed try: Small-Screen SpecialCase Fix */
+@media (max-width: 380px) {
+  .test {
+    /* background: salmon; */
+    font-size: 75px;
+  }
+
+  .something {
+    /* background: chocolate; */
+    font-size: 16px;
+    width: 340px;
+    position: absolute;
+    bottom: -380px;
+    left: 5px;
+    gap: 10px;
+  }
+}
+
+/* Full HD Layout Tweaks: special-case */
+@media (min-width: 1920px) {
+  .hero-img {
+    /* background-color: #fff; */
+    width: 1024px;
+  }
 }
