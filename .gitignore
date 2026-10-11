@@ -27,3 +27,6 @@ dist-ssr
 # Local env & tooling
 .env*
 .vercel
+
+.vercel
+.env*
