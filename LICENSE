@@ -12,9 +12,12 @@ furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
-The original application scaffold derives from the Vite React template and the
-Footprintarts/tech-web starter. This license covers the original redesign,
-branding, content, and code contributions by the above copyright holder only.
+Attribution note: this repository is based on the "tech-web" starter by
+Footprintarts (https://github.com/Footprintarts/tech-web), which itself builds
+on the Vite React template and ships without a license. The upstream author
+declared no license; this license covers only the original contributions made
+by Lakhyajit Changmai on top of that starter. The starter's design system,
+layout, and section components remain credited to their original author.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,

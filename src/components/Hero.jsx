@@ -1,4 +1,5 @@
 import React from 'react';
+import heroArt from '../assets/hero.png';
 
 export default function Hero({ darkMode }) {
   return (
@@ -12,22 +13,30 @@ export default function Hero({ darkMode }) {
         Founded by data experts, we create cutting-edge tools that empower platforms targeted for businesses of all sizes.
       </p>
 
-      {/* Image Placeholder */}
+      {/* Hero artwork — the project's own bundled graphic (was an Unsplash hotlink) */}
 
       <div className="mt-14 max-w-7xl mx-auto px-0 sm:px-6">
-        <div className="w-full h-80 sm:h-130 bg-[url(https://images.unsplash.com/photo-1604076913837-52ab5629fba9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YWJzdHJhY3QlMjBncmFkaWVudHN8ZW58MHx8MHx8fDA%3D)] 
-        rounded-[2.5rem] bg-no-repeat bg-cover relative overflow-hidden shadow-inner flex items-center justify-center">
+        <div className={`w-full h-80 sm:h-130 ${darkMode ? 'bg-zinc-900' : 'bg-[#F5F5F5]'} 
+        rounded-[2.5rem] relative overflow-hidden shadow-inner flex items-center justify-center`}>
 
           {/* Pattern Overlay */}
-          <svg className="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
+          <svg className="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
             <defs>
               <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="black" strokeWidth="1" />
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke={darkMode ? 'white' : 'black'} strokeWidth="1" />
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#grid)" />
           </svg>
-    
+
+          <img
+            src={heroArt}
+            alt="Clayo product concept — layered dashboard architecture in violet gradient"
+            width="480"
+            height="452"
+            className="relative z-10 w-64 sm:w-96 lg:w-[480px] h-auto drop-shadow-3xl"
+            fetchpriority="high"
+          />
         </div>
       </div>
     </section>

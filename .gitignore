@@ -23,3 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 .venv
+
+# Local env & tooling
+.env*
+.vercel

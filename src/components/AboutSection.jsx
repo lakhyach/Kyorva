@@ -7,10 +7,10 @@ export default function AboutSection({ darkMode }) {
 
       
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20 items-center">
-        {/* Image Placeholder */}
-        <div className="w-full h-112.5 bg-[url(https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YWJzdHJhY3QlMjBncmFkaWVudHN8ZW58MHx8MHx8fDA%3D)] 
-        rounded-[2.5rem] bg-no-repeat bg-cover relative overflow-hidden flex items-center justify-center">
-          
+        {/* Abstract gradient panel — local CSS art replacing the Unsplash hotlink */}
+        <div role="img" aria-label="Abstract violet-to-pink gradient artwork" className="w-full h-112.5 bg-gradient-to-br from-[#863bff] via-[#c7d2fe] to-[#fecdd3]
+        rounded-[2.5rem] relative overflow-hidden flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/5" />
         </div>
 
         <div className="space-y-6 max-w-xl">
@@ -31,9 +31,9 @@ export default function AboutSection({ darkMode }) {
 
           {/* CTA Button */}
           <div className="pt-4">
-            <button className="bg-[#111111] text-white text-xs font-medium px-6 py-3.5 rounded-full hover:bg-zinc-800 transition-all inline-flex items-center gap-2">
+            <a href="#services" className="bg-[#111111] text-white text-xs font-medium px-6 py-3.5 rounded-full hover:bg-zinc-800 transition-all inline-flex items-center gap-2">
               Our Method <ArrowUpRight size={14} />
-            </button>
+            </a>
           </div>
         </div>
       </div>

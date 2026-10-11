@@ -1,7 +1,3 @@
-@import url("https://www.google.com/search?q=https://fonts.googleapis.com/css2%3Ffamily%3DPlus%2BJakarta%2BSans:ital,wght%400,200..800%3B1,200..800%26family%3DMontserrat:ital,wght%400,100..900%3B1,100..900%26family%3DPlayfair%2BDisplay:ital,wght%400,400..900%3B1,400..900%26family%3DPrata%26family%3DInter%26family%3DBebas%2BNeue%26family%3DPoppins:ital,wght%400,100%3B0,200%3B0,300%3B0,400%3B0,500%3B0,600%3B0,700%3B0,800%3B0,900%3B1,100%3B1,200%3B1,300%3B1,400%3B1,500%3B1,600%3B1,700%3B1,800%3B1,900%26display%3Dswap");
-
-@import url("https://fonts.googleapis.com/css2?family=Cookie&display=swap");
-
 /* Tailwind V4.0 */
 @import "tailwindcss";
 
@@ -9,10 +5,14 @@
 @variant dark (&:where(.dark, .dark *));
 
 /* on-special-cases */
-/* body {
-  background: #1b1b1b;
+html {
   scroll-behavior: smooth;
-} */
+}
+
+/* Section anchors clear the sticky header */
+section[id] {
+  scroll-margin-top: 6rem;
+}
 
 /* FONTS */
 
@@ -49,7 +49,7 @@
 .logo-font {
   font-family: "logo-font", sans-serif !important;
 }
-/* Google Fonts */
+/* Local font stacks (no remote font requests) */
 * {
   font-family: "helvetica", "Plus Jakarta Sans", "inter", "poppins", sans-serif;
 }
@@ -61,26 +61,49 @@ h4 {
   font-family: "space","monasans","space", sans-serif;
 }
 
-.playfair-display {
-  font-family: "Playfair Display", serif;
-  font-weight: 400;
-  /* font-style: normal; */
-}
-
-.cookie-font {
-  font-family: "Cookie", cursive;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.montserrat {
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-}
-
 a.active hr {
   display: block;
+}
+
+/* Accessibility: visible focus + skip link */
+:focus-visible {
+  outline: 2px solid #111111;
+  outline-offset: 2px;
+}
+
+.dark :focus-visible {
+  outline-color: #fafafa;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: #111111;
+  color: #ffffff;
+  border-radius: 0 0 0.75rem 0;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+/* Respect reduced-motion across all animation */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
 
 ::-webkit-scrollbar {

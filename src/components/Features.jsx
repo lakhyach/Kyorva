@@ -33,22 +33,8 @@ export default function Features({ features = [], darkMode }) {
           })}
         </div>
 
-        {/* Carousel Interface Action Row Controls */}
-        <div className="flex justify-center items-center gap-4 mt-10">
-          <button className={`p-2 transition-colors ${darkMode ? 'text-zinc-500 hover:text-white' : 'text-zinc-400'}`}>
-            <span className="sr-only">Previous feature</span>
-            <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6" /></svg>
-          </button>
-          <div className="flex gap-1.5">
-            <span className={`w-1.5 h-1.5 rounded-full ${darkMode ? 'bg-white' : 'bg-black'}`} />
-            <span className="w-1.5 h-1.5 rounded-full bg-zinc-300" />
-          </div>
-          <button className={`p-2 transition-colors ${darkMode ? 'text-zinc-500 hover:text-white' : 'text-zinc-400'}`}>
-            <span className="sr-only">Next feature</span>
-            <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6" /></svg>
-          </button>
-        </div>
-        
+        {/* The template's decorative carousel arrows were removed: all three
+            features are always visible, so the controls had nothing to page. */}
       </div>
     </section>
   );

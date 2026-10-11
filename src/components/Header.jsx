@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Sun, Moon, ChevronDown, LayoutGrid, Activity } from 'lucide-react';
 
@@ -11,6 +11,26 @@ export default function Header({
   dropdownOpen,
   setDropdownOpen,
 }) {
+  // Mobile overlay: Escape closes it and the page behind stops scrolling
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const onKey = (e) => e.key === 'Escape' && setMobileMenuOpen(false);
+    document.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen, setMobileMenuOpen]);
+
+  // Desktop dropdown: Escape closes it and returns focus context
+  useEffect(() => {
+    if (!dropdownOpen) return;
+    const onKey = (e) => e.key === 'Escape' && setDropdownOpen(false);
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [dropdownOpen, setDropdownOpen]);
+
   // Framer Motion Variants mirroring high-end institutional typography shifts
   const overlayVariants = {
     hidden: { opacity: 0 },
@@ -32,9 +52,9 @@ export default function Header({
       darkMode ? 'bg-[#0B0B0B]/90 border-zinc-900' : 'bg-white/80 border-zinc-100'
     }`}>
       <div className="mx-auto cursor-pointer flex h-20 max-w-7xl items-center justify-between px-6 lg:px-12">
-        <div className={`font-bold tracking-tighter text-xl ${darkMode ? 'text-white' : 'text-black'}`}>
+        <a href="#home" className={`font-bold tracking-tighter text-xl ${darkMode ? 'text-white' : 'text-black'}`}>
           <span className="logo-font">Clayo <sup className="text-[10px] font-mono font-normal tracking-none -ml-0.5">®</sup></span>
-        </div>
+        </a>
 
         {/* ─── DESKTOP NAVIGATION ─── */}
         <nav className="hidden items-center gap-8 text-xs uppercase tracking-wider font-semibold lg:flex">
@@ -46,6 +66,8 @@ export default function Header({
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
               onBlur={() => setTimeout(() => setDropdownOpen(false), 200)}
+              aria-expanded={dropdownOpen}
+              aria-haspopup="true"
               className={`transition-colors flex items-center gap-1 focus:outline-none ${
                 darkMode ? 'text-zinc-400 hover:text-white' : 'text-zinc-600 hover:text-black'
               }`}
@@ -66,17 +88,17 @@ export default function Header({
                   }`}
                 >
                   <div className="space-y-0.5">
-                    <a href="#phase2" className={`flex items-center gap-2.5 px-3 py-2 text-xs font-medium transition-colors rounded-md ${
+                    <a href="#services" onClick={() => setDropdownOpen(false)} className={`flex items-center gap-2.5 px-3 py-2 text-xs font-medium transition-colors rounded-md ${
                       darkMode ? 'text-zinc-300 hover:bg-zinc-900 hover:text-white' : 'text-zinc-600 hover:bg-zinc-50 hover:text-black'
                     }`}>
                       <LayoutGrid size={13} className="text-zinc-500" />
-                      <span>Phase 2 Blueprint</span>
+                      <span>Services overview</span>
                     </a>
-                    <a href="#logs" className={`flex items-center gap-2.5 px-3 py-2 text-xs font-medium transition-colors rounded-md ${
+                    <a href="#insights" onClick={() => setDropdownOpen(false)} className={`flex items-center gap-2.5 px-3 py-2 text-xs font-medium transition-colors rounded-md ${
                       darkMode ? 'text-zinc-300 hover:bg-zinc-900 hover:text-white' : 'text-zinc-600 hover:bg-zinc-50 hover:text-black'
                     }`}>
                       <Activity size={13} className="text-zinc-500" />
-                      <span>System Logs & Ledger</span>
+                      <span>Latest insights</span>
                     </a>
                   </div>
                 </motion.div>
@@ -88,6 +110,7 @@ export default function Header({
         <div className="hidden items-center gap-4 lg:flex">
           <button
             onClick={() => setDarkMode(!darkMode)}
+            aria-label={darkMode ? 'Switch to light theme' : 'Switch to dark theme'}
             className={`p-2.5 rounded-full border transition-all ${
               darkMode ? 'border-zinc-800 bg-zinc-900 text-zinc-100 hover:bg-zinc-800' : 'border-zinc-200 bg-zinc-50 text-zinc-600 hover:bg-zinc-100'
             }`}
@@ -95,17 +118,18 @@ export default function Header({
             {darkMode ? <Sun color='white' size={14} /> : <Moon size={14} />}
           </button>
 
-          <button className={`text-xs font-semibold uppercase tracking-wider px-5 py-3 rounded-full transition-all ${
+          <a href="#get-started" className={`text-xs font-semibold uppercase tracking-wider px-5 py-3 rounded-full transition-all ${
             darkMode ? 'bg-white text-black hover:bg-zinc-200' : 'bg-[#111111] text-white hover:bg-zinc-800'
           }`}>
             Get Started
-          </button>
+          </a>
         </div>
 
         {/* ─── MOBILE CONTROLS TRIGGER ─── */}
         <div className="flex items-center gap-2 lg:hidden">
           <button
             onClick={() => setDarkMode(!darkMode)}
+            aria-label={darkMode ? 'Switch to light theme' : 'Switch to dark theme'}
             className={`p-2 rounded-full border transition-colors ${
               darkMode ? 'border-zinc-900 bg-zinc-950 text-yellow-400' : 'border-zinc-100 bg-zinc-50 text-zinc-600'
             }`}
@@ -114,6 +138,8 @@ export default function Header({
           </button>
           <button
             onClick={() => setMobileMenuOpen(true)}
+            aria-label="Open mobile menu"
+            aria-expanded={mobileMenuOpen}
             className={`rounded-full p-2 transition-colors ${darkMode ? 'text-zinc-400 hover:bg-zinc-900' : 'text-zinc-600 hover:bg-zinc-100'}`}
           >
             <Menu size={22} />
@@ -132,6 +158,9 @@ export default function Header({
             className={`fixed bg-zinc-100/95 h-screen inset-0 z-999 flex flex-col justify-between p-6 sm:p-12 lg:hidden ${
               darkMode ? 'bg-[#070708] text-white' : ' text-black'
             }`}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site menu"
           >
             {/* Overlay Top Bar Layout */}
             <div className="flex  items-center justify-between w-full border-b pb-6 border-current/10">
@@ -171,21 +200,21 @@ export default function Header({
               <div className="space-y-3">
                 <span className="block text-[10px] font-mono uppercase tracking-widest opacity-40">System Core Targets</span>
                 <div className="flex flex-col gap-2 font-mono text-[11px] uppercase tracking-wider">
-                  <a href="#phase2" onClick={() => setMobileMenuOpen(false)} className="hover:opacity-60 transition-opacity flex items-center gap-1.5">
-                    <span>Phase 2 Blueprint</span>
+                  <a href="#services" onClick={() => setMobileMenuOpen(false)} className="hover:opacity-60 transition-opacity flex items-center gap-1.5">
+                    <span>Services overview</span>
                   </a>
-                  <a href="#logs" onClick={() => setMobileMenuOpen(false)} className="hover:opacity-60 transition-opacity flex items-center gap-1.5">
-                    <span>System Logs & Ledger</span>
+                  <a href="#insights" onClick={() => setMobileMenuOpen(false)} className="hover:opacity-60 transition-opacity flex items-center gap-1.5">
+                    <span>Latest insights</span>
                   </a>
                 </div>
               </div>
 
               <div>
-                <button className={`w-full py-4 text-xs font-bold uppercase tracking-widest text-center transition-colors ${
+                <a href="#get-started" onClick={() => setMobileMenuOpen(false)} className={`block w-full py-4 text-xs font-bold uppercase tracking-widest text-center transition-colors ${
                   darkMode ? 'bg-white text-black hover:bg-zinc-200' : 'bg-black text-white hover:bg-zinc-900'
                 }`}>
                   Get Started
-                </button>
+                </a>
               </div>
             </div>
 
