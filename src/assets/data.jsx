@@ -46,7 +46,7 @@ const testimonials = [
 const articles = [
   {
     tag: "Finance",
-    title: "The Ultimate Guide to Budgeting in 2024",
+    title: "The Ultimate Guide to Budgeting in 2026",
     desc: "Master the art of budgeting with our comprehensive guide. Learn how to create a budget that works for you.",
     art: "from-[#c7d2fe] via-[#e0e7ff] to-[#fecdd3]"
   },
