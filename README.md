@@ -52,6 +52,10 @@ from imaginary users.
 | **Get started** | Email CTA with client-side validation, labelled as a demo |
 | **Footer** | Animated gradient wordmark, section links, privacy statement |
 
+The complete page, top to bottom:
+
+![Kyorva full page](docs/preview.jpg)
+
 ## Design system
 
 Light-first white/zinc surfaces, a single black pill as the primary action,
