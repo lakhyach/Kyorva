@@ -29,13 +29,17 @@ export default function App() {
   const [darkMode, setDarkMode] = useState(getInitialDarkMode);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  // Persist the theme choice across visits
+  // Persist the theme choice across visits, and keep the <html> backdrop
+  // (set pre-paint by the inline script in index.html) in sync with toggles.
   useEffect(() => {
     try {
       localStorage.setItem(THEME_KEY, darkMode ? 'dark' : 'light');
     } catch {
       /* storage unavailable (private mode) — theme still works for the session */
     }
+    const el = document.documentElement.style;
+    el.background = darkMode ? '#0B0B0B' : '#ffffff';
+    el.colorScheme = darkMode ? 'dark' : 'light';
   }, [darkMode]);
 
   return (

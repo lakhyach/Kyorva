@@ -22,6 +22,19 @@
     <meta name="twitter:title" content="Clayo Analytics — Real-time financial insights" />
     <meta name="twitter:description" content="Real-time insight, customizable reports, and the same clarity on every screen." />
     <meta name="twitter:image" content="https://clayo-analytics.vercel.app/og.svg" />
+
+    <!-- Prevent a wrong-theme flash before React mounts. Mirrors App.jsx
+         resolution order exactly: saved choice first, OS preference second. -->
+    <script>
+      (function () {
+        try {
+          var s = localStorage.getItem('clayo-theme');
+          var d = s ? s === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.style.background = d ? '#0B0B0B' : '#ffffff';
+          document.documentElement.style.colorScheme = d ? 'dark' : 'light';
+        } catch (e) { /* private mode etc. — default paint is fine */ }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
