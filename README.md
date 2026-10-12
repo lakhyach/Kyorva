@@ -3,7 +3,7 @@
 A fintech marketing site for **Kyorva**, a real-time financial analytics
 concept. Built with React 19, Vite, Tailwind CSS v4, and Framer Motion.
 
-Live: [https://kyorva-finance.vercel.app](https://kyorva-finance.vercel.app)
+Live: [https://kyorva.vercel.app](https://kyorva.vercel.app)
 
 ![Preview](docs/preview.png)
 
