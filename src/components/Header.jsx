@@ -53,7 +53,7 @@ export default function Header({
     }`}>
       <div className="mx-auto cursor-pointer flex h-20 max-w-7xl items-center justify-between px-6 lg:px-12">
         <a href="#home" className={`font-bold tracking-tighter text-xl ${darkMode ? 'text-white' : 'text-black'}`}>
-          <span className="logo-font">Clayo <sup className="text-[10px] font-mono font-normal tracking-none -ml-0.5">®</sup></span>
+          <span className="logo-font">Kyorva <sup className="text-[10px] font-mono font-normal tracking-none -ml-0.5">®</sup></span>
         </a>
 
         {/* ─── DESKTOP NAVIGATION ─── */}

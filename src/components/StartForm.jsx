@@ -33,7 +33,7 @@ export default function StartForm({ darkMode }) {
           See your numbers clearly
         </h2>
         <p className={`text-sm font-light max-w-md mx-auto leading-relaxed mb-8 ${darkMode ? 'text-zinc-300' : 'text-zinc-500'}`}>
-          Leave your email and we'll reach out when Clayo opens early access.
+          Leave your email and we'll reach out when Kyorva opens early access.
         </p>
 
         {status === 'success' ? (

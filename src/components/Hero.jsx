@@ -6,11 +6,11 @@ export default function Hero({ darkMode }) {
     <section id="home" className="pt-16 pb-20 text-center max-w-4xl mx-auto px-6">
       {/* Header */}
       <h1 className={`text-4xl font-semibold tracking-tight ${darkMode ? 'text-white' : 'text-zinc-900'} sm:text-6xl sm:leading-[1.15] mb-6`}>
-        Discover our journey<br />and what drives us
+        Your numbers, the<br />moment you ask
       </h1>
       {/* Description */}
       <p className={`text-sm sm:text-base max-w-xl mx-auto leading-relaxed font-light ${darkMode ? 'text-zinc-300' : 'text-zinc-500'}`}>
-        Founded by data experts, we create cutting-edge tools that empower platforms targeted for businesses of all sizes.
+        Kyorva is a financial analytics platform concept: live market and portfolio data, reports you shape yourself, and the same clarity on every screen.
       </p>
 
       {/* Hero artwork — the project's own bundled graphic (was an Unsplash hotlink) */}
@@ -31,7 +31,7 @@ export default function Hero({ darkMode }) {
 
           <img
             src={heroArt}
-            alt="Clayo product concept — layered dashboard architecture in violet gradient"
+            alt="Kyorva product concept — layered dashboard architecture in violet gradient"
             width="480"
             height="452"
             className="relative z-10 w-64 sm:w-96 lg:w-[480px] h-auto drop-shadow-3xl"

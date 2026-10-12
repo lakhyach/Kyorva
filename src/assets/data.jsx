@@ -19,19 +19,9 @@ const features = [
   }
 ];
 
-// The maker — one real person. The template shipped invented names and
-// stock-photo "team members"; those were removed as fabricated content.
-const team = [
-  {
-    name: "Lakhyajit Changmai",
-    role: "Design & Engineering",
-    initials: "LC",
-    github: "https://github.com/lakhyach"
-  }
-];
-
 // Honest product-approach statements in the testimonial layout.
-// No invented customers or quotes.
+// No invented customers or quotes. (The old `team` export lived here;
+// it was replaced by the UseCases section once personal names came down.)
 const testimonials = [
   {
     quote: "Numbers should arrive the moment you ask a question — dashboards that wait until tomorrow answer nothing.",
@@ -74,4 +64,4 @@ const articles = [
   }
 ];
 
-export { features, team, testimonials, articles };
+export { features, testimonials, articles };

@@ -4,14 +4,15 @@ import Hero from './components/Hero';
 import Metrics from './components/Metrics';
 import AboutSection from './components/AboutSection';
 import Features from './components/Features';
-import Team from './components/Team';
+import UseCases from './components/UseCases';
+import Workflow from './components/Workflow';
 import Testimonials from './components/Testimonials';
 import Articles from './components/Articles';
 import StartForm from './components/StartForm';
 import Footer from './components/Footer';
-import { features, team, testimonials, articles } from './assets/data';
+import { features, testimonials, articles } from './assets/data';
 
-const THEME_KEY = 'clayo-theme';
+const THEME_KEY = 'kyorva-theme';
 
 // Restore the visitor's previous choice; fall back to their OS preference.
 function getInitialDarkMode() {
@@ -63,7 +64,8 @@ export default function App() {
         <Metrics darkMode={darkMode} />
         <AboutSection darkMode={darkMode} />
         <Features features={features} darkMode={darkMode} />
-        <Team team={team} darkMode={darkMode} />
+        <Workflow darkMode={darkMode} />
+        <UseCases darkMode={darkMode} />
         <Testimonials testimonials={testimonials} darkMode={darkMode} />
 
         <Articles articles={articles} darkMode={darkMode} />

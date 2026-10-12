@@ -17,22 +17,22 @@ export default function AboutSection({ darkMode }) {
           {/* Tag */}
           <div className={`flex items-center gap-2 text-xs font-medium tracking-wide uppercase ${darkMode ? 'text-zinc-300' : 'text-zinc-400'}`}>
             <span className="w-1.5 h-1.5 rounded-full bg-zinc-400" />
-            <span>Passion</span>
+            <span>Why Kyorva</span>
           </div>
           {/* Heading */}
           <h2 className={`text-3xl sm:text-4xl font-semibold tracking-tight leading-[1.2] ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
-            We are passionate about empowering individuals and businesses to take control of their finances
+            Financial data should answer questions, not pile up in dashboards
           </h2>
 
           {/* Description */}
           <p className={`text-sm font-light leading-relaxed ${darkMode ? 'text-zinc-300' : 'text-zinc-400'}`}>
-            We are dedicated to revolutionizing the way individuals and businesses manage their finances. Our team is committed to providing relative and intuitive solutions that empower our users to achieve financial peace.
+            Kyorva is built around one idea: every number arrives the moment you ask, every report is reshaped by the person reading it, and the whole picture holds up on a phone as well as it does on a desk. This site presents that product concept — the design system, story, and interface direction are real; the platform itself is pre-launch.
           </p>
 
           {/* CTA Button */}
           <div className="pt-4">
-            <a href="#services" className="bg-[#111111] text-white text-xs font-medium px-6 py-3.5 rounded-full hover:bg-zinc-800 transition-all inline-flex items-center gap-2">
-              Our Method <ArrowUpRight size={14} />
+            <a href="#workflow" className="bg-[#111111] text-white text-xs font-medium px-6 py-3.5 rounded-full hover:bg-zinc-800 transition-all inline-flex items-center gap-2">
+              How it works <ArrowUpRight size={14} />
             </a>
           </div>
         </div>

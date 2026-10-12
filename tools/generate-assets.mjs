@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Clayo asset generator — style-locked image/video generation.
+ * Kyorva asset generator — style-locked image/video generation.
  *
  * Every prompt is prefixed with the brand's visual DNA (extracted from
  * src/assets/hero.png and public/favicon.svg) so generated material matches
@@ -56,7 +56,7 @@ function runHf(subArgs, opts = {}) {
 const STYLE = {
   palette: ['#863bff', '#47bfff', '#a78bfa', '#111111', '#ffffff'],
   prefix:
-    'Premium fintech product art, Clayo brand style: violet #863bff to azure #47bfff ' +
+    'Premium fintech product art, Kyorva brand style: violet #863bff to azure #47bfff ' +
     'metallic gradients, frosted glass rounded-square panels in exploded isometric ' +
     'layers, clean white background, soft long shadows, minimal Swiss composition, ' +
     'no text, no logos, no people.',
@@ -166,7 +166,7 @@ async function main() {
     process.exit(1);
   }
 
-  const style = process.env.CLAYO_STYLE_UNLOCKED === '1' ? prompt : `${STYLE.prefix} ${prompt}. ${STYLE.negative}`;
+  const style = process.env.KYORVA_STYLE_UNLOCKED === '1' ? prompt : `${STYLE.prefix} ${prompt}. ${STYLE.negative}`;
   let file = null;
 
   const hf = hfgAvailable();
